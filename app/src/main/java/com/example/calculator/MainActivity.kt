@@ -1,131 +1,361 @@
 package com.example.calculator
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculator.databinding.ActivityMainBinding
 
+@SuppressLint("ClickableViewAccessibility", "SetTextI18n", "ResourceAsColor")
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    var hasNatija = false
+    private lateinit var binding: ActivityMainBinding
+    private var hasNatija = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.btn0.setOnClickListener(View.OnClickListener {
-            if (binding.txtEkran.text != "0") {
-                binding.txtEkran.text = "${binding.txtEkran.text}0"
-            }
+        binding.btn0.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn0.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
 
+                    if (binding.txtEkran.text != "0") {
+                        binding.txtEkran.text = "${binding.txtEkran.text}0"
+                    }
+                    Toast.makeText(this, "0", Toast.LENGTH_SHORT).show()
+
+                    binding.btn0.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
         })
 
-        binding.btn1.setOnClickListener {
-            raqamYozish(1)
+        binding.btn1.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn1.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
 
-        }
+                    raqamYozish(1)
 
-        binding.btn2.setOnClickListener {
-            raqamYozish(2)
-
-        }
-
-        binding.btn3.setOnClickListener {
-            raqamYozish(3)
-
-        }
-
-        binding.btn4.setOnClickListener {
-            raqamYozish(4)
-        }
-
-        binding.btn5.setOnClickListener {
-            raqamYozish(5)
-
-        }
-
-        binding.btn6.setOnClickListener {
-            raqamYozish(6)
-
-        }
-
-        binding.btn7.setOnClickListener {
-            raqamYozish(7)
-
-        }
-
-        binding.btn8.setOnClickListener {
-            raqamYozish(8)
-
-        }
-
-        binding.btn9.setOnClickListener {
-            raqamYozish(9)
-
-        }
-
-
-        binding.btnNuqta.setOnClickListener {
-            val misol = binding.txtEkran.text.toString()
-            var amalIndex = -1
-            for (i in misol.indices) {
-                if (misol[i] == '+' || misol[i] == '-' || misol[i] == '*' || misol[i] == '/') {
-                    amalIndex = i
+                    binding.btn1.setShapeType(0)
+                    return@OnTouchListener true
                 }
             }
-            if (amalIndex == -1) {
-                if (!binding.txtEkran.text.toString().contains('.')) {
-                    binding.txtEkran.text = "${binding.txtEkran.text}."
+            false
+        })
+
+        binding.btn2.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn2.setShapeType(1)
+                    return@OnTouchListener true
                 }
-            } else {
-                val ekranLength = binding.txtEkran.text.length
-                val matn = binding.txtEkran.text.toString().subSequence(amalIndex, ekranLength)
-                if (!matn.contains('.')) {
-                    binding.txtEkran.text = "${binding.txtEkran.text}."
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(2)
+
+                    binding.btn2.setShapeType(0)
+                    return@OnTouchListener true
                 }
             }
-        }
+            false
+        })
 
-        binding.btnAc.setOnClickListener {
-            binding.txtEkran.text = "0"
-            hasNatija = false
+        binding.btn3.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn3.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
 
-        }
+                    raqamYozish(3)
 
-        binding.btnDelete.setOnClickListener {
-            val a = binding.txtEkran.text
-            if (a.length == 1 || a == "-") {
-                binding.txtEkran.text = "0"
-            } else
-                binding.txtEkran.text = a.subSequence(0, a.length - 1)
-        }
+                    binding.btn3.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn4.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn4.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(4)
+
+                    binding.btn4.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn5.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn5.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(5)
+
+                    binding.btn5.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn6.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn6.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(6)
+
+                    binding.btn6.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn7.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn7.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(7)
+
+                    binding.btn7.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn8.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn8.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(8)
+
+                    binding.btn8.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btn9.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btn9.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    raqamYozish(9)
+
+                    binding.btn9.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
 
 
-        binding.btnQoshish.setOnClickListener {
-            amalYozish("+")
-        }
+        binding.btnNuqta.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnNuqta.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
 
-        binding.btnAyirish.setOnClickListener {
-            amalYozish("-")
-        }
+                    val misol = binding.txtEkran.text.toString()
+                    var amalIndex = -1
+                    for (i in misol.indices) {
+                        if (misol[i] == '+' || misol[i] == '-' || misol[i] == '*' || misol[i] == '/') {
+                            amalIndex = i
+                        }
+                    }
+                    if (amalIndex == -1) {
+                        if (!binding.txtEkran.text.toString().contains('.')) {
+                            binding.txtEkran.text = "${binding.txtEkran.text}."
+                        }
+                    } else {
+                        val ekranLength = binding.txtEkran.text.length
+                        val matn =
+                            binding.txtEkran.text.toString().subSequence(amalIndex, ekranLength)
+                        if (!matn.contains('.')) {
+                            binding.txtEkran.text = "${binding.txtEkran.text}."
+                        }
+                    }
 
-        binding.btnKopaytirish.setOnClickListener {
-            amalYozish("*")
-        }
+                    binding.btnNuqta.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
 
-        binding.btnBolish.setOnClickListener {
-            amalYozish("/")
-        }
+        binding.btnAc.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnAc.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
 
-        binding.btnTeng.setOnClickListener {
-            if (hasNatija == false) hisoblash()
-        }
+                    binding.txtEkran.text = "0"
+                    hasNatija = false
+
+                    binding.btnAc.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnDelete.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnDelete.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    val a = binding.txtEkran.text
+                    if (a.length == 1 || a == "-") {
+                        binding.txtEkran.text = "0"
+                    } else
+                        binding.txtEkran.text = a.subSequence(0, a.length - 1)
+
+                    binding.btnDelete.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnQoshish.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnQoshish.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    amalYozish("+")
+
+                    binding.btnQoshish.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnAyirish.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnAyirish.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    amalYozish("-")
+
+                    binding.btnAyirish.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnKopaytirish.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnKopaytirish.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    amalYozish("*")
+
+                    binding.btnKopaytirish.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnBolish.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnBolish.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    amalYozish("/")
+
+                    binding.btnBolish.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        binding.btnTeng.setOnTouchListener(View.OnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.btnTeng.setShapeType(1)
+                    return@OnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+
+                    if (!hasNatija) hisoblash()
+
+                    binding.btnTeng.setShapeType(0)
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
     }
 
 
-    fun raqamYozish(raqam: Int) {
+    private fun raqamYozish(raqam: Int) {
 
         if (hasNatija) {
             binding.txtEkran.text = "$raqam"
@@ -142,7 +372,7 @@ class MainActivity : AppCompatActivity() {
         binding.scrollView.scrollBy(100, 100)
     }
 
-    fun amalYozish(amalArg: String) {
+    private fun amalYozish(amalArg: String) {
         if (hasNatija) {
             val misol = binding.txtEkran.text.toString()
             for (i in misol.indices) {
@@ -159,10 +389,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun hisoblash() {
+    private fun hisoblash() {
 
-        var sonlar = ArrayList<Double>()
-        var amallar = ArrayList<Int>()
+        val sonlar = ArrayList<Double>()
+        val amallar = ArrayList<Int>()
 
         val misol = binding.txtEkran.text.toString()
 

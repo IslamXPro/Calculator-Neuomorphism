@@ -81,29 +81,21 @@
                 android:layout_height="100dp"
                 android:gravity="center"
                 android:text="AC"
-                android:textColor="#FF0000"
+                android:textColor="#F79000"
                 android:textSize="50sp" />
 
             <soup.neumorphism.NeumorphButton
                 android:id="@+id/btn_delete"
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:text="C"
+                android:text="C ->"
                 android:textColor="@color/text_color"
                 android:textSize="50sp"
-
+                app:neumorph_backgroundColor="#F79000"
                 />
 
-            <soup.neumorphism.NeumorphButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="%"
-                android:textColor="@color/text_color"
-                android:textSize="50sp"
 
-                />
 
             <soup.neumorphism.NeumorphButton
                 android:id="@+id/btn_bolish"
@@ -279,18 +271,8 @@
             android:orientation="horizontal">
 
             <soup.neumorphism.NeumorphButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="00"
-                android:textColor="@color/text_color"
-                android:textSize="50sp"
-
-                />
-
-            <soup.neumorphism.NeumorphButton
                 android:id="@+id/btn0"
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:gravity="center"
                 android:text="0"
